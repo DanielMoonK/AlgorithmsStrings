@@ -15,6 +15,8 @@ public class AlgorithmsStrings {
         System.out.println(twoLetter);
         System.out.print("Number of longest letter words: ");
         System.out.println(numLong);
+        System.out.print("Number of palindromes: ");
+        System.out.println(numPal);
         s.close();
     }
 
@@ -56,13 +58,16 @@ public class AlgorithmsStrings {
         int numPal = 0;
         while(s.hasNext()){
             String nextWord = s.nextLine();
-            if(nextWord.length() % 2 == 0){
-                String firstHalf = nextWord.substring(0, nextWord.length()/2);
-                String secondHalf = "";
-                for(int i=0;i<nextWord.length()/2;i++){
-                    secondHalf += nextWord.substring(nextWord.length()-i, nextWord.length()-i-1);
-                }
+            String firstHalf = nextWord.substring(0, nextWord.length()/2);
+            String secondHalf = "";
+            for(int i=1;i<=nextWord.length()/2;i++){
+                secondHalf += nextWord.substring((nextWord.length())-i, (nextWord.length())-i+1);
+            }
+            if(firstHalf.equals(secondHalf)){
+                numPal++;
+                System.out.println(nextWord);
             }
         }
+        return numPal;
     }
 }
